@@ -354,6 +354,7 @@ terraform.rc
 .ionide
 
 ### Custom ###
+**/ny_taxi_postgres_data
 .GCP_svc_keys
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform,python,jupyternotebooks,visualstudiocode,pycharm
