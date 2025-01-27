@@ -336,6 +336,7 @@ terraform.rc
 
 ### VisualStudioCode ###
 .vscode/*
+ ../../.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -356,5 +357,6 @@ terraform.rc
 ### Custom ###
 **/ny_taxi_postgres_data
 .GCP_svc_keys
+.idea
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform,python,jupyternotebooks,visualstudiocode,pycharm
