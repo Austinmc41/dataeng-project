@@ -13,11 +13,7 @@ services:
       retries: 5
     restart: always
 
-#
-# docker run -it \
-#   -e  POSTGRES_USER="postgres" \
-#   -e  POSTGRES_PASSWORD="postgres" \
-#   -e  POSTGRES_DB="nytlcdatabase" \
-#   -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
-#   -p 5432:5432 \
-# postgres:13
+
+
+
+
