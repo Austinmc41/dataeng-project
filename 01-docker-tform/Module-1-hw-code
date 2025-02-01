@@ -1,0 +1,71 @@
+
+
+Q1:
+code:
+ docker run -it \
+   --entrypoint /bin/bash \
+   python:3.12.8
+
+Bash session and output:
+root@da4f27660744:/# pip -V
+pip 24.3.1 from /usr/local/lib/python3.12/site-packages/pip (python 3.12)
+
+Answer: 24.3.1
+
+Q2:
+db:5432
+The network has the 5432 port exposed within it and the docker service acts as
+the host name within the network
+
+Q3:
+select count("index") filter(where trip_distance <= 1),
+       count("index") filter(where trip_distance > 1 and trip_distance <= 3),
+       count("index") filter(where trip_distance > 3 and trip_distance <= 7),
+       count("index") filter(where trip_distance > 7 and trip_distance <= 10),
+       count("index") filter(where trip_distance > 10)
+from green_taxi_trips gtt
+where lpep_dropoff_datetime >= '2019-10-01'
+and lpep_dropoff_datetime < '2019-11-01';
+
+104,802; 198,924; 109,603; 27,678; 35,189
+
+Q4:
+with max_by_day as(
+select max(trip_distance) as trip_distance_max, lpep_pickup_datetime
+from green_taxi_trips gtt
+group by lpep_pickup_datetime)
+
+
+select trip_distance_max, lpep_pickup_datetime
+from max_by_day
+order by trip_distance_max desc;
+
+2019-10-31
+
+Q5:
+with one_day_pickup as (
+select *
+from green_taxi_trips gtt
+join taxi_zone_lookup tzl on cast(tzl."LocationID" as int8) = gtt."PULocationID"
+where lpep_pickup_datetime >= '2019-10-18'
+and lpep_pickup_datetime < '2019-10-19')
+
+select "Zone", sum(total_amount) as total_sum from
+one_day_pickup
+group by "Zone" having sum(total_amount) > 13000
+order by sum(total_amount) DESC;
+
+East Harlem North, East Harlem South, Morningside Heights
+
+Q6:
+
+
+
+Q7:
+Which of the following sequences, respectively, describes the workflow for:
+
+Downloading the provider plugins and setting up backend,
+Generating proposed changes and auto-executing the plan
+Remove all resources managed by terraform`
+
+terraform init, terraform apply -auto-approve, terraform destroy
