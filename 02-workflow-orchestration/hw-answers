@@ -1,0 +1,10 @@
+
+3. SELECT COUNT(*) FROM `dtc-de-course-448202.zoomcamp.yellow_tripdata` WHERE tpep_pickup_datetime BETWEEN
+"2020-01-01" AND "2021-01-01"
+
+
+4. SELECT COUNT(*) FROM `dtc-de-course-448202.zoomcamp.green_tripdata` WHERE lpep_pickup_datetime BETWEEN
+"2020-01-01" AND "2021-01-01"
+
+
+5. SELECT COUNT(*) FROM `dtc-de-course-448202.zoomcamp.yellow_tripdata_2021_03`
