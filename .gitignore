@@ -358,5 +358,6 @@ terraform.rc
 **/ny_taxi_postgres_data
 .GCP_svc_keys
 .idea
+**/.env_encoded
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform,python,jupyternotebooks,visualstudiocode,pycharm
