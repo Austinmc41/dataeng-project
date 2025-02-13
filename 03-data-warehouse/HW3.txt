@@ -1,0 +1,32 @@
+CREATE OR REPLACE EXTERNAL TABLE `dtc-de-course-448202.zoomcamp.yellow_tripdata_ext`
+Options (
+  format = 'parquet',
+  uris = ['gs://austinmc41_datalake_raw_hw3/*.parquet']
+);
+
+
+CREATE OR REPLACE TABLE `dtc-de-course-448202.zoomcamp.yellow_tripdata_non_partitioned` AS
+SELECT * FROM `dtc-de-course-448202.zoomcamp.yellow_tripdata_ext`;
+
+
+SELECT COUNT(DISTINCT PULocationID) FROM dtc-de-course-448202.zoomcamp.yellow_tripdata_ext;
+
+SELECT COUNT(DISTINCT PULocationID) FROM dtc-de-course-448202.zoomcamp.yellow_tripdata_non_partitioned;
+
+SELECT COUNT(*) FROM dtc-de-course-448202.zoomcamp.yellow_tripdata_ext
+WHERE fare_amount = 0;
+
+CREATE OR REPLACE TABLE
+  dtc-de-course-448202.zoomcamp.yellow_tripdata_partitioned
+PARTITION BY DATE(tpep_dropoff_datetime)
+CLUSTER BY VendorID AS
+SELECT * FROM dtc-de-course-448202.zoomcamp.yellow_tripdata_non_partitioned;
+
+
+SELECT COUNT(DISTINCT VendorID)
+FROM `dtc-de-course-448202.zoomcamp.yellow_tripdata_non_partitioned`
+WHERE DATE(tpep_dropoff_datetime) BETWEEN '2024-03-01' AND '2024-03-15'
+
+SELECT COUNT(DISTINCT VendorID)
+FROM `dtc-de-course-448202.zoomcamp.yellow_tripdata_partitioned`
+WHERE DATE(tpep_dropoff_datetime) BETWEEN '2024-03-01' AND '2024-03-15'
